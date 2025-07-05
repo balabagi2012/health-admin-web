@@ -1,5 +1,5 @@
 // 匯出所有 API 服務
-export { authApi, useLoginMutation, useGetCurrentUserQuery } from './authApi';
+export { authApi, useLoginMutation, useGetProfileQuery } from './authApi';
 export {
   usersApi,
   useGetUsersQuery,
