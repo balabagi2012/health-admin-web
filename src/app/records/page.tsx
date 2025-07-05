@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Container,
@@ -30,6 +31,7 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   Assessment as AssessmentIcon,
+  ArrowBack as ArrowBackIcon,
 } from '@mui/icons-material';
 import {
   useGetRecordsQuery,
@@ -44,6 +46,7 @@ import type {
 } from '@/lib/services/recordsApi';
 
 export default function RecordsPage() {
+  const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
   const [editingRecord, setEditingRecord] = useState<Record | null>(null);
   const [formData, setFormData] = useState<CreateRecordRequest>({
@@ -177,6 +180,14 @@ export default function RecordsPage() {
         }}
       >
         <Toolbar>
+          <IconButton
+            edge='start'
+            color='inherit'
+            onClick={() => router.push('/dashboard')}
+            sx={{ mr: 2 }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
           <AssessmentIcon sx={{ mr: 2, color: 'background.paper' }} />
           <Typography
             variant='h6'

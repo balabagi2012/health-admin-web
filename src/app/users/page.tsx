@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Container,
@@ -29,6 +30,7 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   People as PeopleIcon,
+  ArrowBack as ArrowBackIcon,
 } from '@mui/icons-material';
 import {
   useGetUsersQuery,
@@ -43,6 +45,7 @@ import type {
 } from '@/lib/services/usersApi';
 
 export default function UsersPage() {
+  const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [formData, setFormData] = useState<CreateUserRequest>({
@@ -160,6 +163,14 @@ export default function UsersPage() {
         }}
       >
         <Toolbar>
+          <IconButton
+            edge='start'
+            color='inherit'
+            onClick={() => router.push('/dashboard')}
+            sx={{ mr: 2 }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
           <PeopleIcon sx={{ mr: 2, color: 'background.paper' }} />
           <Typography
             variant='h6'

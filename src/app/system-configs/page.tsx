@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Box,
   Container,
@@ -36,6 +37,7 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   Settings as SettingsIcon,
+  ArrowBack as ArrowBackIcon,
 } from '@mui/icons-material';
 import {
   useGetSystemConfigsQuery,
@@ -50,6 +52,7 @@ import type {
 } from '@/lib/services/systemConfigsApi';
 
 export default function SystemConfigsPage() {
+  const router = useRouter();
   const [openDialog, setOpenDialog] = useState(false);
   const [editingConfig, setEditingConfig] = useState<SystemConfig | null>(null);
   const [formData, setFormData] = useState<CreateSystemConfigRequest>({
@@ -171,6 +174,14 @@ export default function SystemConfigsPage() {
         }}
       >
         <Toolbar>
+          <IconButton
+            edge='start'
+            color='inherit'
+            onClick={() => router.push('/dashboard')}
+            sx={{ mr: 2 }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
           <SettingsIcon sx={{ mr: 2, color: 'background.paper' }} />
           <Typography
             variant='h6'
